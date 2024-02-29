@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://52h15fxtx2nf"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_fxqub"]
+[ext_resource type="Curve" uid="uid://cn7wun2vmqt26" path="res://Player/movement_curve.tres" id="2_uv1y1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6c5k4"]
+radius = 14.0
+height = 38.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_fxqub")
+movement_curve = ExtResource("2_uv1y1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -19)
+shape = SubResource("CapsuleShape2D_6c5k4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
+position = Vector2(6, -15)
+polygon = PackedVector2Array(-7, -16, -14, -10, -22, -9, -23, 5, -12, 14, 8, 10, 13, -4, 4, -13)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprite2D"]
+position = Vector2(3, 1)
+color = Color(0.160784, 0.160784, 0.592157, 1)
+polygon = PackedVector2Array(3, -25, 2, -23, 3, -21, 5, -22, 5, -24)

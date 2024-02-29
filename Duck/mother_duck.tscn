@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq1ydqt5xf7v3"]
+
+[ext_resource type="PackedScene" uid="uid://cksu6jag1cpsj" path="res://Duck/duck.tscn" id="1_fjm7e"]
+
+[node name="MotherDuck" instance=ExtResource("1_fjm7e")]
+scale = Vector2(4, 4)

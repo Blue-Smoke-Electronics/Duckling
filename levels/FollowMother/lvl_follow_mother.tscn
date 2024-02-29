@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://dysaspb64pept"]
+
+[ext_resource type="Script" path="res://levels/FollowMother/lvl_follow_mother.gd" id="1_ikcu3"]
+[ext_resource type="PackedScene" uid="uid://52h15fxtx2nf" path="res://Player/player.tscn" id="1_kgejk"]
+[ext_resource type="PackedScene" uid="uid://cq1ydqt5xf7v3" path="res://Duck/mother_duck.tscn" id="2_juq4a"]
+[ext_resource type="PackedScene" uid="uid://cksu6jag1cpsj" path="res://Duck/duck.tscn" id="3_y2ya7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmyki"]
+size = Vector2(2267, 214)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8y4t"]
+size = Vector2(213, 469)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pln1u"]
+font_size = 100
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehb5q"]
+size = Vector2(222, 701)
+
+[sub_resource type="Animation" id="Animation_ienet"]
+resource_name = "move_ducks"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(810, 646), Vector2(810, 646), Vector2(2528, 660)]
+}
+
+[sub_resource type="Animation" id="Animation_fsqte"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(810, 646)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ublf"]
+_data = {
+"RESET": SubResource("Animation_fsqte"),
+"move_ducks": SubResource("Animation_ienet")
+}
+
+[node name="LvlFollowMother" type="Node2D"]
+script = ExtResource("1_ikcu3")
+
+[node name="ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+position = Vector2(1007.5, 816)
+shape = SubResource("RectangleShape2D_hmyki")
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ground/Sprite2D"]
+position = Vector2(20.5355, -912.645)
+scale = Vector2(1.59874, 3.52222)
+color = Color(0.0980392, 0.592157, 0.341176, 1)
+polygon = PackedVector2Array(-51, 458, 1209, 460, 1215, 524, 510, 521, -51, 524)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 878.0
+offset_top = 1002.0
+offset_right = 918.0
+offset_bottom = 1025.0
+text = "A"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 878.0
+offset_top = 973.0
+offset_right = 921.0
+offset_bottom = 996.0
+text = "Move
+"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 913.0
+offset_top = 1003.0
+offset_right = 953.0
+offset_bottom = 1026.0
+text = "D"
+
+[node name="Player" parent="." instance=ExtResource("1_kgejk")]
+position = Vector2(189, 688.533)
+
+[node name="Nest" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Nest"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Nest/Sprite2D"]
+position = Vector2(-10, 242.533)
+color = Color(1, 0.776471, 0.235294, 1)
+polygon = PackedVector2Array(-63, 364, 55, 368, 111, 326, 147, 339, 147, 454, -67, 457)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Nest/Sprite2D"]
+position = Vector2(-11, 243.533)
+polygon = PackedVector2Array(-24, 312, -6, 325, 12, 310, 27, 324, 40, 311, 41, 339, 35, 355, 10, 362, -18, 359, -30, 346, -31, 326, -30, 306)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Nest/Sprite2D"]
+position = Vector2(-201, 365.533)
+rotation = -0.979754
+polygon = PackedVector2Array(-24, 312, -6, 325, 12, 310, 27, 324, 40, 311, 41, 339, 35, 355, 10, 362, -18, 359, -30, 346, -31, 326, -30, 306)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nest"]
+position = Vector2(30, 497)
+shape = SubResource("RectangleShape2D_v8y4t")
+
+[node name="InstructionLable" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 31.0
+offset_right = 1237.0
+offset_bottom = 168.0
+text = "Follow Mother"
+label_settings = SubResource("LabelSettings_pln1u")
+
+[node name="Ducks" type="Node2D" parent="."]
+position = Vector2(810, 646)
+
+[node name="MotherDuck" parent="Ducks" instance=ExtResource("2_juq4a")]
+position = Vector2(-101, 50)
+
+[node name="Duckling2" parent="Ducks" instance=ExtResource("3_y2ya7")]
+position = Vector2(-255, 40)
+
+[node name="Duckling3" parent="Ducks" instance=ExtResource("3_y2ya7")]
+position = Vector2(-344, 43)
+
+[node name="Duckling4" parent="Ducks" instance=ExtResource("3_y2ya7")]
+position = Vector2(-438, 39)
+
+[node name="Duckling5" parent="Ducks" instance=ExtResource("3_y2ya7")]
+position = Vector2(-530, 40)
+
+[node name="Area2DLevelCompleated" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLevelCompleated"]
+position = Vector2(2034, 359.5)
+shape = SubResource("RectangleShape2D_ehb5q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ublf")
+}
+autoplay = "move_ducks"
+
+[connection signal="body_entered" from="Area2DLevelCompleated" to="." method="_on_area_2d_level_compleated_body_entered"]

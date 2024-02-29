@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3 uid="uid://j5bbw03o1ck"]
+
+[ext_resource type="Script" path="res://levels/jump/lvl_jump.gd" id="1_kk8ht"]
+[ext_resource type="PackedScene" uid="uid://52h15fxtx2nf" path="res://Player/player.tscn" id="2_px3ln"]
+[ext_resource type="PackedScene" uid="uid://cq1ydqt5xf7v3" path="res://Duck/mother_duck.tscn" id="3_e5ig6"]
+[ext_resource type="PackedScene" uid="uid://cksu6jag1cpsj" path="res://Duck/duck.tscn" id="4_p8j1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmyki"]
+size = Vector2(2267, 214)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pln1u"]
+font_size = 100
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehb5q"]
+size = Vector2(222, 707)
+
+[sub_resource type="Animation" id="Animation_fsqte"]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(697, 648), Vector2(2517, 654)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ducks/MotherDuck:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.8, 1.1, 1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-101, 50), Vector2(-95.2, -166.96), Vector2(-93.4, -195.32), Vector2(-95.2, -166.96), Vector2(-70.8, 45.96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ducks/Duckling2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 1.5, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-250, 35), Vector2(-250, -250), Vector2(-250, 35)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ducks/Duckling3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2, 1.8, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-344, 43), Vector2(-344, -250), Vector2(-344, 35)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ducks/Duckling4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-438, 39), Vector2(-438, -250), Vector2(-438, 35)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ducks/Duckling5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.8, 2.3, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-530, 40), Vector2(-530, -250), Vector2(-530, 35)]
+}
+
+[sub_resource type="Animation" id="Animation_ienet"]
+resource_name = "move_ducks"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(810, 646), Vector2(810, 646), Vector2(2528, 660)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ublf"]
+_data = {
+"RESET": SubResource("Animation_fsqte"),
+"move_ducks": SubResource("Animation_ienet")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gxdq"]
+size = Vector2(236, 230)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l56i6"]
+size = Vector2(129, 725.5)
+
+[node name="LvlJump" type="Node2D"]
+script = ExtResource("1_kk8ht")
+
+[node name="ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+position = Vector2(1007.5, 816)
+shape = SubResource("RectangleShape2D_hmyki")
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ground/Sprite2D"]
+position = Vector2(20.5355, -912.645)
+scale = Vector2(1.59874, 3.52222)
+color = Color(0.0980392, 0.592157, 0.341176, 1)
+polygon = PackedVector2Array(-51, 458, 1209, 460, 1215, 524, 510, 521, -51, 524)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 885.0
+offset_top = 1008.0
+offset_right = 931.0
+offset_bottom = 1031.0
+text = "Space
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 891.0
+offset_top = 972.0
+offset_right = 934.0
+offset_bottom = 995.0
+text = "Jump
+"
+
+[node name="Player" parent="." instance=ExtResource("2_px3ln")]
+position = Vector2(92, 683)
+enable_jump = true
+
+[node name="InstructionLable" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 31.0
+offset_right = 1237.0
+offset_bottom = 168.0
+text = "Jump over rock"
+label_settings = SubResource("LabelSettings_pln1u")
+
+[node name="Ducks" type="Node2D" parent="."]
+position = Vector2(697, 648)
+
+[node name="MotherDuck" parent="Ducks" instance=ExtResource("3_e5ig6")]
+position = Vector2(-101, 50)
+
+[node name="Duckling2" parent="Ducks" instance=ExtResource("4_p8j1x")]
+position = Vector2(-250, 35)
+
+[node name="Duckling3" parent="Ducks" instance=ExtResource("4_p8j1x")]
+position = Vector2(-344, 43)
+
+[node name="Duckling4" parent="Ducks" instance=ExtResource("4_p8j1x")]
+position = Vector2(-438, 39)
+
+[node name="Duckling5" parent="Ducks" instance=ExtResource("4_p8j1x")]
+position = Vector2(-530, 40)
+
+[node name="Area2DLevelCompleated" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLevelCompleated"]
+position = Vector2(2034, 356.5)
+shape = SubResource("RectangleShape2D_ehb5q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ublf")
+}
+autoplay = "RESET"
+
+[node name="Rock" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rock"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Rock/Sprite2D"]
+position = Vector2(-2, -4)
+color = Color(0.486275, 0.501961, 0.439216, 1)
+polygon = PackedVector2Array(951, 723, 899, 715, 880, 625, 889, 571, 953, 515, 1049, 499, 1099, 535, 1103, 593, 1112, 656, 1069, 721, 1013, 723)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
+position = Vector2(995, 606)
+shape = SubResource("RectangleShape2D_0gxdq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-64, 359.75)
+shape = SubResource("RectangleShape2D_l56i6")
+
+[connection signal="body_entered" from="Area2DLevelCompleated" to="." method="_on_area_2d_level_compleated_body_entered"]
