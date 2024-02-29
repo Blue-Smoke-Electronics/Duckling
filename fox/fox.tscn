@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://buyv677u1f2h"]
+
+[ext_resource type="Script" path="res://fox/fox.gd" id="1_vq2ur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gas1"]
+size = Vector2(918, 414)
+
+[node name="Fox" type="Area2D"]
+position = Vector2(2734, 542)
+script = ExtResource("1_vq2ur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
+position = Vector2(16, -768.415)
+scale = Vector2(1, 1.02516)
+color = Color(0.776471, 0.235294, 0, 1)
+polygon = PackedVector2Array(-336, 863, -296, 867, -294, 707, 6, 701, -22, 877, 4, 891, 106, 889, 86, 681, 256, 733, 428, 727, 278, 643, 106, 653, 58, 615, -294, 615, -370, 573, -442, 649, -370, 689, -346, 679)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 2)
+shape = SubResource("RectangleShape2D_7gas1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

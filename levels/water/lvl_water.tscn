@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmv1cxvdtr4mu"]
+
+[ext_resource type="Script" path="res://levels/water/lvl_water.gd" id="1_j8is3"]
+[ext_resource type="PackedScene" uid="uid://52h15fxtx2nf" path="res://Player/player.tscn" id="2_saex6"]
+[ext_resource type="PackedScene" uid="uid://cq1ydqt5xf7v3" path="res://Duck/mother_duck.tscn" id="3_53wl6"]
+[ext_resource type="PackedScene" uid="uid://cksu6jag1cpsj" path="res://Duck/duck.tscn" id="4_cb256"]
+[ext_resource type="Script" path="res://water/WaterArea2D.gd" id="5_fb00x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pln1u"]
+font_size = 100
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehb5q"]
+size = Vector2(222, 707)
+
+[sub_resource type="Animation" id="Animation_fsqte"]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(697, 648), Vector2(1238, 682), Vector2(2517, 654)]
+}
+
+[sub_resource type="Animation" id="Animation_ienet"]
+resource_name = "move_ducks"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ducks:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(810, 646), Vector2(810, 646), Vector2(2528, 660)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ublf"]
+_data = {
+"RESET": SubResource("Animation_fsqte"),
+"move_ducks": SubResource("Animation_ienet")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l56i6"]
+size = Vector2(129, 725.5)
+
+[node name="LvlWater" type="Node2D"]
+script = ExtResource("1_j8is3")
+
+[node name="ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ground"]
+polygon = PackedVector2Array(-56, 706, -63, 932, 1966, 930, 1966, 706, 1336, 708, 1304, 777, 1088, 832, 900, 789, 735, 826, 628, 711)
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+
+[node name="Polygon2D2" type="Polygon2D" parent="ground/Sprite2D"]
+color = Color(0.0392157, 0.32549, 1, 1)
+polygon = PackedVector2Array(597, 709, 1382, 709, 1383, 839, 602, 875)
+
+[node name="Polygon2D" type="Polygon2D" parent="ground/Sprite2D"]
+position = Vector2(20.5355, -718.382)
+scale = Vector2(1.59874, 3.15149)
+color = Color(0.0980392, 0.592157, 0.341176, 1)
+polygon = PackedVector2Array(-50.3744, 452.923, 378.088, 452.923, 447.518, 490.683, 554.477, 478.942, 667.066, 491.635, 801.547, 474.5, 824.69, 452.606, 1216.25, 453.875, 1215, 524, 510, 521, -51, 524)
+
+[node name="Player" parent="." instance=ExtResource("2_saex6")]
+position = Vector2(92, 683)
+enable_jump = true
+
+[node name="InstructionLable" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 31.0
+offset_right = 1237.0
+offset_bottom = 168.0
+text = "Swim across pond"
+label_settings = SubResource("LabelSettings_pln1u")
+
+[node name="Ducks" type="Node2D" parent="."]
+position = Vector2(697, 648)
+
+[node name="MotherDuck" parent="Ducks" instance=ExtResource("3_53wl6")]
+position = Vector2(-101, 50)
+
+[node name="Duckling2" parent="Ducks" instance=ExtResource("4_cb256")]
+position = Vector2(-250, 35)
+
+[node name="Duckling3" parent="Ducks" instance=ExtResource("4_cb256")]
+position = Vector2(-344, 43)
+
+[node name="Duckling4" parent="Ducks" instance=ExtResource("4_cb256")]
+position = Vector2(-438, 39)
+
+[node name="Duckling5" parent="Ducks" instance=ExtResource("4_cb256")]
+position = Vector2(-530, 40)
+
+[node name="Area2DLevelCompleated" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLevelCompleated"]
+position = Vector2(2034, 356.5)
+shape = SubResource("RectangleShape2D_ehb5q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ublf")
+}
+autoplay = "RESET"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-64, 359.75)
+shape = SubResource("RectangleShape2D_l56i6")
+
+[node name="WaterArea2D" type="Area2D" parent="."]
+script = ExtResource("5_fb00x")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WaterArea2D"]
+polygon = PackedVector2Array(620, 707, 1337, 708, 1306, 775, 1087, 829, 904, 792, 737, 830)
+
+[connection signal="body_entered" from="Area2DLevelCompleated" to="." method="_on_area_2d_level_compleated_body_entered"]
+[connection signal="body_entered" from="WaterArea2D" to="WaterArea2D" method="_on_body_entered"]
+[connection signal="body_exited" from="WaterArea2D" to="WaterArea2D" method="_on_body_exited"]

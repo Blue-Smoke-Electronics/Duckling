@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://52h15fxtx2nf"]
+[gd_scene load_steps=5 format=3 uid="uid://52h15fxtx2nf"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_fxqub"]
 [ext_resource type="Curve" uid="uid://cn7wun2vmqt26" path="res://Player/movement_curve.tres" id="2_uv1y1"]
+
+[sub_resource type="Curve" id="Curve_kmpy8"]
+min_value = -1.0
+_data = [Vector2(0, 0.335766), 0.0, 0.0, 0, 0, Vector2(0.169321, -0.290511), 0.0, 0.0, 0, 0, Vector2(0.347863, 0.905109), 0.0, 0.0, 0, 0, Vector2(0.502096, 0.373723), 0.0, 0.0, 0, 0, Vector2(0.661358, 0.981022), 0.0, 0.0, 0, 0, Vector2(0.998324, 1), 0.0, 0.0, 0, 0]
+point_count = 6
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6c5k4"]
 radius = 14.0
@@ -10,6 +15,7 @@ height = 38.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_fxqub")
 movement_curve = ExtResource("2_uv1y1")
+jump_curve = SubResource("Curve_kmpy8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -19)

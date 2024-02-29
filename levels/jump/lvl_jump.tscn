@@ -111,8 +111,9 @@ _data = {
 "move_ducks": SubResource("Animation_ienet")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gxdq"]
-size = Vector2(236, 230)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywbet"]
+radius = 114.0
+height = 382.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l56i6"]
 size = Vector2(129, 725.5)
@@ -202,8 +203,8 @@ color = Color(0.486275, 0.501961, 0.439216, 1)
 polygon = PackedVector2Array(951, 723, 899, 715, 880, 625, 889, 571, 953, 515, 1049, 499, 1099, 535, 1103, 593, 1112, 656, 1069, 721, 1013, 723)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
-position = Vector2(995, 606)
-shape = SubResource("RectangleShape2D_0gxdq")
+position = Vector2(993, 668)
+shape = SubResource("CapsuleShape2D_ywbet")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
