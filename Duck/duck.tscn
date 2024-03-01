@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://cksu6jag1cpsj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77q6y"]
-radius = 30.2655
+radius = 42.0476
 
 [node name="Duck" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+position = Vector2(6, 0)
+scale = Vector2(0.420731, 0.472306)
 
 [node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
 color = Color(1, 1, 0.521569, 1)
@@ -17,5 +18,5 @@ color = Color(0.0117647, 1, 1, 1)
 polygon = PackedVector2Array(55, -126, 49, -122, 56, -117, 60, -124)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -30)
+position = Vector2(1, -41)
 shape = SubResource("CircleShape2D_77q6y")

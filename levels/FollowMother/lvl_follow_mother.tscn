@@ -133,7 +133,7 @@ position = Vector2(810, 646)
 position = Vector2(-101, 50)
 
 [node name="Duckling2" parent="Ducks" instance=ExtResource("3_y2ya7")]
-position = Vector2(-255, 40)
+position = Vector2(-237, 40)
 
 [node name="Duckling3" parent="Ducks" instance=ExtResource("3_y2ya7")]
 position = Vector2(-344, 43)

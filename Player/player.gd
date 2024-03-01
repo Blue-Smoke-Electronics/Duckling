@@ -11,6 +11,7 @@ const MAX_JUMP_TIME = 1
 @export var enable_jump = false
 @export var movement_curve : Curve
 @export var jump_curve : Curve
+@export var rotation_curve :Curve
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,6 +23,7 @@ var jump_time : float = 0
 var jump_cnt : int = 0
 
 var submerged = false
+@onready var sprite_2d = %Sprite2D
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -56,18 +58,24 @@ func _physics_process(delta):
 		
 	hold_time = clamp(hold_time,-MAX_HOLD_TIME,MAX_HOLD_TIME)	
 	
-	var movment = movement_curve.sample((hold_time/MAX_HOLD_TIME)/2+0.5)
+	#var movment = movement_curve.sample((hold_time/MAX_HOLD_TIME)/2+0.5)
+	rotation = rotation_curve.sample((hold_time/MAX_HOLD_TIME)/2+0.5)
+	var movment =  sin(rotation)
 	
 	if Input.is_action_pressed("left"): 
 		velocity.x = movment * SPEED
+		sprite_2d.play("walk") 
 	elif Input.is_action_pressed("right"):
 		velocity.x = movment * SPEED
+		sprite_2d.play("walk")
 	else :
 		velocity.x =0
+		sprite_2d.play("Idle")
+		
 		
 	#print((hold_time/MAX_HOLD_TIME)/2+0.5, " : ", movement_curve.sample((hold_time/MAX_HOLD_TIME)/2+0.5))
 	
-	rotation = hold_time/MAX_HOLD_TIME*PI
+	#rotation = rotation_curve.sample((hold_time/MAX_HOLD_TIME)/2+0.5) #movment# 
 
 	if submerged:
 		velocity.x *= 0.3

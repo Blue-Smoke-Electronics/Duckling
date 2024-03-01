@@ -1,30 +1,88 @@
-[gd_scene load_steps=5 format=3 uid="uid://52h15fxtx2nf"]
+[gd_scene load_steps=16 format=3 uid="uid://52h15fxtx2nf"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_fxqub"]
 [ext_resource type="Curve" uid="uid://cn7wun2vmqt26" path="res://Player/movement_curve.tres" id="2_uv1y1"]
+[ext_resource type="Curve" uid="uid://02pfk4i4si6a" path="res://Player/jump_curve.tres" id="3_itgha"]
+[ext_resource type="Texture2D" uid="uid://cu0eija4rs4gf" path="res://Player/0001.png" id="4_3emov"]
+[ext_resource type="Texture2D" uid="uid://cj1yxs4ovg0sq" path="res://Player/front.png" id="4_j5lqw"]
+[ext_resource type="Texture2D" uid="uid://csg71qcqem0rg" path="res://Player/0002.png" id="5_m55ry"]
+[ext_resource type="Texture2D" uid="uid://dascm1aa2xnmn" path="res://Player/0003.png" id="6_hurqe"]
+[ext_resource type="Texture2D" uid="uid://qu5u84jx71cs" path="res://Player/0004.png" id="7_dy20e"]
+[ext_resource type="Texture2D" uid="uid://fy4jpd8wi4hy" path="res://Player/0005.png" id="8_tenly"]
+[ext_resource type="Texture2D" uid="uid://bxr76wou68qp4" path="res://Player/0006.png" id="9_rqah7"]
+[ext_resource type="Texture2D" uid="uid://bh4jp0w0xx2t5" path="res://Player/0007.png" id="10_f48g1"]
+[ext_resource type="Texture2D" uid="uid://2gx4e3sdxe4y" path="res://Player/0008.png" id="11_c1lav"]
 
-[sub_resource type="Curve" id="Curve_kmpy8"]
-min_value = -1.0
-_data = [Vector2(0, 0.335766), 0.0, 0.0, 0, 0, Vector2(0.169321, -0.290511), 0.0, 0.0, 0, 0, Vector2(0.347863, 0.905109), 0.0, 0.0, 0, 0, Vector2(0.502096, 0.373723), 0.0, 0.0, 0, 0, Vector2(0.661358, 0.981022), 0.0, 0.0, 0, 0, Vector2(0.998324, 1), 0.0, 0.0, 0, 0]
-point_count = 6
+[sub_resource type="Curve" id="Curve_li8kb"]
+min_value = -4.71
+max_value = 4.71
+_data = [Vector2(0, -2.18746), 0.0, 0.0, 0, 0, Vector2(0.501257, -0.635334), 5.33192, 5.33192, 0, 0, Vector2(0.527242, -0.313541), 0.0, 0.0, 0, 0, Vector2(0.564962, -0.349296), 8.34562, 8.34562, 0, 0, Vector2(0.662196, 0.937875), 11.3303, 11.3303, 0, 0, Vector2(0.791282, 3.80774), 5.70427, 5.70427, 0, 0, Vector2(1, 4.71), 7.9147, 0.0, 0, 0]
+point_count = 7
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6c5k4"]
-radius = 14.0
-height = 38.0
+radius = 35.0
+height = 90.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8khlp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j5lqw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3emov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m55ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hurqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dy20e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tenly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rqah7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_f48g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_c1lav")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_fxqub")
 movement_curve = ExtResource("2_uv1y1")
-jump_curve = SubResource("Curve_kmpy8")
+jump_curve = ExtResource("3_itgha")
+rotation_curve = SubResource("Curve_li8kb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -19)
+position = Vector2(1, -46)
 shape = SubResource("CapsuleShape2D_6c5k4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-5, -32)
+scale = Vector2(0.0979167, 0.105324)
+sprite_frames = SubResource("SpriteFrames_8khlp")
+animation = &"Idle"
+frame_progress = 0.956427
 
 [node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
-position = Vector2(6, -15)
+position = Vector2(-114.545, 201.818)
 polygon = PackedVector2Array(-7, -16, -14, -10, -22, -9, -23, 5, -12, 14, 8, 10, 13, -4, 4, -13)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Sprite2D"]
